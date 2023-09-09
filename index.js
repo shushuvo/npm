@@ -135,7 +135,7 @@ res.status(500).json({ error: 'Internal Server Error' });
 
 
 // Handle all other routes by serving the 'index.html' file
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname,  'index.html'));
 });
 app.listen(port, () => {
