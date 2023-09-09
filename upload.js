@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
-const port = 5047;
+const port = 5049;
 
 // Replace 'your-mongodb-atlas-connection-string' with your actual MongoDB Atlas connection string
 const mongoUri = 'mongodb+srv://hutum:hutum@cluster0.v8sh5.mongodb.net/Newdb';
@@ -331,6 +331,193 @@ const cdataSchema = new mongoose.Schema({
   
 
 
+
+
+
+
+
+
+
+
+ // Define a Mongoose schema for your data
+ const dataSchemacurriculum = new mongoose.Schema({
+  firstName: String,
+  });
+  const DataModelcurriculum = mongoose.model("curriculum", dataSchema);
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.get('/curriculum', (req, res) => {
+  const indexPath = path.join(__dirname, 'uploadcurriculum.html');
+  res.sendFile(indexPath);
+  });
+  // Define the route to handle form submission and save data to MongoDB
+  app.post('/uploadcurriculum', async (req, res) => {
+  try {
+  // Extract data from the form
+  const { firstName, lastName, email, age } = req.body;
+  // Create a new data instance
+  const newData = new DataModelcurriculum({
+  firstName,
+  });
+  // Save the new data to the database
+  await newData.save();
+  // Respond with a success message or appropriate response
+  res.send('Data saved successfully');
+  } catch (error) {
+  console.error('Error:', error);
+  res.status(500).send('Internal Server Error');
+  }
+  });
+  app.get('/api/curriculum', async (req, res) => {
+  try {
+  // Fetch data from the database
+  const users = await DataModelcurriculum.find();
+  // Send the data as JSON
+  res.json(users);
+  } catch (error) {
+  console.error('Error:', error);
+  res.status(500).json({ error: 'Internal Server Error' });
+  }
+  });
+  app.post('/deletecurriculum', async (req, res) => {
+  const { firstName } = req.body;
+  try {
+  const deletedUser = await DataModelcurriculum.findOneAndDelete({ firstName });
+  if (!deletedUser) {
+  console.log('No user found with the given first name.');
+  return res.status(404).json({ message: 'No user found with the given first name.' });
+  }
+  console.log('User deleted successfully:', deletedUser);
+  res.status(200).json({ message: 'User deleted successfully' });
+  } catch (err) {
+  console.error('Error deleting user:', err);
+  res.status(500).json({ message: 'Internal server error' });
+  }
+  });
+
+
+
+
+
+
+
+
+
+// Define a Mongoose schema for your data
+const dataSchemavideo = new mongoose.Schema({
+  firstName: String,
+  });
+  const DataModelvideo = mongoose.model("video", dataSchema);
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.get('/video', (req, res) => {
+  const indexPath = path.join(__dirname, 'uploadvideo.html');
+  res.sendFile(indexPath);
+  });
+  // Define the route to handle form submission and save data to MongoDB
+  app.post('/uploadvideo', async (req, res) => {
+  try {
+  // Extract data from the form
+  const { firstName, lastName, email, age } = req.body;
+  // Create a new data instance
+  const newData = new DataModelvideo({
+  firstName,
+  });
+  // Save the new data to the database
+  await newData.save();
+  // Respond with a success message or appropriate response
+  res.send('Data saved successfully');
+  } catch (error) {
+  console.error('Error:', error);
+  res.status(500).send('Internal Server Error');
+  }
+  });
+  app.get('/api/video', async (req, res) => {
+  try {
+  // Fetch data from the database
+  const users = await DataModelvideo.find();
+  // Send the data as JSON
+  res.json(users);
+  } catch (error) {
+  console.error('Error:', error);
+  res.status(500).json({ error: 'Internal Server Error' });
+  }
+  });
+  app.post('/deletevideo', async (req, res) => {
+  const { firstName } = req.body;
+  try {
+  const deletedUser = await DataModelvideo.findOneAndDelete({ firstName });
+  if (!deletedUser) {
+  console.log('No user found with the given first name.');
+  return res.status(404).json({ message: 'No user found with the given first name.' });
+  }
+  console.log('User deleted successfully:', deletedUser);
+  res.status(200).json({ message: 'User deleted successfully' });
+  } catch (err) {
+  console.error('Error deleting user:', err);
+  res.status(500).json({ message: 'Internal server error' });
+  }
+  });
+
+
+
+
+
+
+
+
+  // Define a Mongoose schema for your data
+const dataSchemaphoto = new mongoose.Schema({
+  firstName: String,
+  });
+  const DataModelphoto = mongoose.model("photo", dataSchema);
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.get('/photo', (req, res) => {
+  const indexPath = path.join(__dirname, 'uploadphoto.html');
+  res.sendFile(indexPath);
+  });
+  // Define the route to handle form submission and save data to MongoDB
+  app.post('/uploadphoto', async (req, res) => {
+  try {
+  // Extract data from the form
+  const { firstName, lastName, email, age } = req.body;
+  // Create a new data instance
+  const newData = new DataModelphoto({
+  firstName,
+  });
+  // Save the new data to the database
+  await newData.save();
+  // Respond with a success message or appropriate response
+  res.send('Data saved successfully');
+  } catch (error) {
+  console.error('Error:', error);
+  res.status(500).send('Internal Server Error');
+  }
+  });
+  app.get('/api/photo', async (req, res) => {
+  try {
+  // Fetch data from the database
+  const users = await DataModelphoto.find();
+  // Send the data as JSON
+  res.json(users);
+  } catch (error) {
+  console.error('Error:', error);
+  res.status(500).json({ error: 'Internal Server Error' });
+  }
+  });
+  app.post('/deletephoto', async (req, res) => {
+  const { firstName } = req.body;
+  try {
+  const deletedUser = await DataModelphoto.findOneAndDelete({ firstName });
+  if (!deletedUser) {
+  console.log('No user found with the given first name.');
+  return res.status(404).json({ message: 'No user found with the given first name.' });
+  }
+  console.log('User deleted successfully:', deletedUser);
+  res.status(200).json({ message: 'User deleted successfully' });
+  } catch (err) {
+  console.error('Error deleting user:', err);
+  res.status(500).json({ message: 'Internal server error' });
+  }
+  });
 
 
 

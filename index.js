@@ -136,6 +136,73 @@ res.status(500).json({ error: 'Internal Server Error' });
 
 
 
+const usernoticeSchemacurriculum = new mongoose.Schema({
+  firstName: String,
+  });
+const UsernoticeModelcurriculum = mongoose.model("curriculum", usernoticeSchemacurriculum);
+app.get('/api/curriculum', async (req, res) => {
+try {
+// Fetch data from the database
+const users = await UsernoticeModelcurriculum.find();
+console.log('from notice react');
+// Send the data as JSON
+res.json(users);
+} catch (error) {
+console.error('Error:', error);
+res.status(500).json({ error: 'Internal Server Error' });
+}
+}); 
+
+
+
+
+
+
+const usernoticeSchemavideo = new mongoose.Schema({
+  firstName: String,
+  });
+const UsernoticeModelvideo = mongoose.model("video", usernoticeSchemavideo);
+app.get('/api/video', async (req, res) => {
+try {
+// Fetch data from the database
+const users = await UsernoticeModelvideo.find();
+console.log('from notice react');
+// Send the data as JSON
+res.json(users);
+} catch (error) {
+console.error('Error:', error);
+res.status(500).json({ error: 'Internal Server Error' });
+}
+});
+
+
+
+
+
+
+const usernoticeSchemaphoto = new mongoose.Schema({
+  firstName: String,
+  });
+const UsernoticeModelphoto = mongoose.model("photo", usernoticeSchemaphoto);
+app.get('/api/photo', async (req, res) => {
+try {
+// Fetch data from the database
+const users = await UsernoticeModelphoto.find();
+console.log('from notice react');
+// Send the data as JSON
+res.json(users);
+} catch (error) {
+console.error('Error:', error);
+res.status(500).json({ error: 'Internal Server Error' });
+}
+});
+
+
+
+
+
+
+
 
 // Serve static files from the 'build' directory
 app.use(express.static(path.join(__dirname, 'build')));
